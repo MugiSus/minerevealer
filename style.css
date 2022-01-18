@@ -67,7 +67,7 @@ html, body {
     background-color: var(--col-empty);
 }
 
-.unopened {
+.tile.unopened {
     cursor: pointer;
     background: repeating-linear-gradient(
         -45deg,
@@ -78,18 +78,18 @@ html, body {
     );
 }
 
-.tile.opened {
-    background-color: var(--col-reveal);
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(0.2, 0.65, 0.35, 1);
-    transition-duration: 500ms;
-    transform: rotate3d(1, 0, 0, 360deg);
-}
-
-.unopened:hover {
+.tile.unopened:hover {
     transition-property: filter;
     transition-duration: 200ms;
     filter: brightness(150%);
+}
+
+.tile.opened {
+    background-color: var(--col-reveal);
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.2, 0.1, 0.35, 1.4);
+    transition-duration: 600ms;
+    transform: rotate3d(1, 0, 0, 360deg);
 }
 
 .num1 {
