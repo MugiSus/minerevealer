@@ -1,0 +1,115 @@
+@font-face {
+    font-family: outfit;
+    font-weight: 100 900;
+    src: url("Outfit-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: yujisyuku;
+    src: url("YujiSyuku-Regular.ttf");
+}
+
+:root {
+    --tilesize: 50px;
+    --col-num1: #7BA2Cf;
+    --col-num2: #74AD7D;
+    --col-num3: #AE7373;
+    --col-num4: #898DCC;
+    --col-num5: #B59A81;
+    --col-num6: #81B2B5;
+    --col-num7: #B0B0B0;
+    --col-num8: #D8D8D8;
+    --col-unopened1: #1b1b1b;
+    --col-unopened2: #242424;
+    --col-reveal: #444444;
+    --col-empty: #2b2b2b;
+}
+
+html, body {
+    font-family: outfit, yujisyuku;
+    margin: 0;
+    background-color: #303030;
+    overflow: hidden;
+    user-select: none;
+}
+
+#container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--tilesize);
+    height: var(--tilesize);
+    background-color: var(--col-reveal);
+    border-radius: 5px;
+    margin: 3px;
+    font-weight: 250;
+    font-size: 35px;
+    text-shadow: 0 0 10px;
+}
+
+.empty {
+    background-color: var(--col-empty);
+}
+
+.unopened {
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--col-unopened1),
+        var(--col-unopened1) 7.5px,
+        var(--col-unopened2) 7.5px,
+        var(--col-unopened2) 15px
+    );
+}
+
+.unopened:hover {
+    transition-property: filter;
+    transition-duration: 200ms;
+    filter: brightness(150%);
+}
+
+.num1 {
+    color: var(--col-num1);
+}
+
+.num2 {
+    color: var(--col-num2);
+}
+
+.num3 {
+    color: var(--col-num3);
+}
+
+.num4 {
+    color: var(--col-num4);
+}
+
+.num5 {
+    color: var(--col-num5);
+}
+
+.num6 {
+    color: var(--col-num6);
+}
+
+.num7 {
+    color: var(--col-num7);
+}
+
+.num8 {
+    color: var(--col-num8);
+}
