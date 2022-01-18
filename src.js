@@ -3,8 +3,32 @@ const cloneAndAppendChild =(parentElement, elementCloned, time)=> {
         parentElement.appendChild(elementCloned.cloneNode(true));
 }
 
-const getTileAt =(x, y)=> 
-    document.getElementsByClassName("row")[y].getElementsByClassName("tile")[x]
+let width = 9;
+let height = 9;
+let tilemap = {};
+
+const getTileElementAt =(x, y)=> document.getElementsByClassName("row")[y]?.getElementsByClassName("tile")[x];
+
+//const calcTileAt =(x, y)=> 
+
+
+const openTile =(x, y)=> {
+    const tile = getTileElementAt(x, y);
+    if (!tile || !tile.classList.contains("unopened")) return;
+    tile.classList.add("opened");
+    tile.classList.remove("unopened");
+    let number = Math.floor(Math.random() * 8) + 1;
+    if (number > 0) {
+        tile.classList.add(`num${number}`);
+        tile.innerHTML = number;
+    }
+    setTimeout(() => {
+        openTile(x, y - 1);
+        openTile(x, y + 1);
+        openTile(x - 1, y);
+        openTile(x + 1, y);
+    }, 50)
+}
 
 cloneAndAppendChild(
     document.getElementsByClassName("row")[0],
@@ -17,20 +41,8 @@ cloneAndAppendChild(
     height - 1
 );
 
-[...document.getElementsByClassName("tile")].forEach(tile => 
-    tile.addEventListener("click", () => {
-        tile.classList.remove("unopened");
-        let number = Math.floor(Math.random() * 9);
-        if (number > 0) {
-            tile.classList.add(`num${number}`);
-            tile.innerHTML = number;
-        }
-    })
-)
-
-let width = 8;
-let height = 8;
-
-const openTile =(targetTile, x, y)=> {
-    
-}
+[...document.getElementsByClassName("row")].forEach((row, y) => {
+    [...row.getElementsByClassName("tile")].forEach((tile, x) => {
+        tile.addEventListener("click", () => openTile(x, y));
+    });
+});

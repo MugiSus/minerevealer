@@ -43,6 +43,8 @@ html, body {
 }
 
 .row {
+    transform-style: preserve-3d;
+    perspective: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,6 +69,7 @@ html, body {
 }
 
 .unopened {
+    cursor: pointer;
     background: repeating-linear-gradient(
         -45deg,
         var(--col-unopened1),
@@ -74,6 +77,13 @@ html, body {
         var(--col-unopened2) 7.5px,
         var(--col-unopened2) 15px
     );
+}
+
+.tile.opened {
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1);
+    transition-duration: 500ms;
+    transform: rotate3d(1, 0, 0, 360deg);
 }
 
 .unopened:hover {
