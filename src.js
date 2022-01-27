@@ -3,9 +3,18 @@ const cloneAndAppendChild =(parentElement, elementCloned, time)=> {
         parentElement.appendChild(elementCloned.cloneNode(true));
 }
 
-let width = 9;
-let height = 9;
-let tilemap = {};
+let width = 7;
+let height = 7;
+
+const BOMB = 1;
+const EMPTY = 0;
+let tilemap = {
+    0: {2: BOMB, 4: BOMB},
+    2: {0: BOMB, 2: BOMB, 3: BOMB, 4: BOMB, 6: BOMB},
+    3: {2: BOMB, 4: BOMB},
+    4: {0: BOMB, 2: BOMB, 3: BOMB, 4: BOMB, 6: BOMB},
+    6: {2: BOMB, 4: BOMB},
+}
 
 const getTileElementAt =(x, y)=> document.getElementsByClassName("row")[y]?.getElementsByClassName("tile")[x];
 
@@ -17,7 +26,17 @@ const openTile =(x, y)=> {
     if (!tile || !tile.classList.contains("unopened")) return;
     tile.classList.add("opened");
     tile.classList.remove("unopened");
-    let number = Math.floor(Math.random() * 8) + 1;
+    let number = (
+        (tilemap[x - 1]?.[y - 1] == BOMB) + 
+        (tilemap[x - 1]?.[y] == BOMB) + 
+        (tilemap[x - 1]?.[y + 1] == BOMB) + 
+        (tilemap[x]?.[y - 1] == BOMB) + 
+        (tilemap[x]?.[y + 1] == BOMB) + 
+        (tilemap[x + 1]?.[y - 1] == BOMB) + 
+        (tilemap[x + 1]?.[y] == BOMB) + 
+        (tilemap[x + 1]?.[y + 1] == BOMB)
+    )
+    console.log(number);
     if (number > 0) {
         tile.classList.add(`num${number}`);
         tile.innerHTML = number;

@@ -10,7 +10,7 @@
 }
 
 :root {
-    --tilesize: 50px;
+    --tilesize: 65px;
     --col-num1: #7BA2Cf;
     --col-num2: #74AD7D;
     --col-num3: #AE7373;
@@ -59,7 +59,7 @@ html, body {
     border-radius: 5px;
     margin: 3px;
     font-weight: 320;
-    font-size: 35px;
+    font-size: 45px;
     text-shadow: 0 0 10px;
 }
 
@@ -87,7 +87,7 @@ html, body {
 .tile.opened {
     background-color: var(--col-reveal);
     transition-property: transform;
-    transition-timing-function: cubic-bezier(0.2, 0.1, 0.35, 1.4);
+    transition-timing-function: cubic-bezier(0.2, 0.1, 0.35, 1.35);
     transition-duration: 600ms;
     transform: rotate3d(1, 0, 0, 360deg);
 }
